@@ -1,0 +1,155 @@
+
+<style>
+  /* ayat */
+  .ayat {
+    width: 83%;
+    display: flex;
+    margin: auto;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+  .card {
+    color: white;
+    width: 190px;
+    height: 254px;
+    border-radius: 20px;
+    background: #f5f5f5;
+    /* background-color: rgba(255, 255, 255, 0.3); */
+    /* backdrop-filter: blur(5px); */
+    position: relative;
+    padding: 1.8rem;
+    border: 2px solid #c3c6ce;
+    transition: 0.5s ease-out;
+    overflow: visible;
+    cursor: pointer;
+  }
+
+  .card-details {
+    color: black;
+    height: 100%;
+    gap: 0.5em;
+    display: grid;
+    place-content: center;
+  }
+
+  .card-button {
+    transform: translate(-50%, 125%);
+    width: 60%;
+    border-radius: 1rem;
+    border: 1px solid teal;
+    background-color: rgba(0, 128, 128, 0.7);
+    backdrop-filter: blur(5px);
+    color: #fff;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    opacity: 0;
+    transition: 0.3s ease-out;
+  }
+
+  .card-button a {
+    text-decoration: none;
+    color: white;
+  }
+
+  .text-body {
+    color: rgb(134, 134, 134);
+    font-family: cursive;
+  }
+
+  /*Text*/
+  .text-title {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  /*Hover*/
+  .card:hover {
+    /* border-color: #008bf8; */
+    border-color: teal;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+  }
+
+  .card:hover .card-button {
+    transform: translate(-50%, 50%);
+    opacity: 1;
+  }
+
+  .total-surat {
+    font-size: 1.1rem;
+    margin-left: 140px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    cursor: pointer;
+    font-style: italic;
+    text-shadow: 1px 1px 10px rgba(175, 171, 171, 0.5);
+  }
+
+  /* form */
+  .input-group {
+    margin-top: 80px;
+  }
+
+  .input-group input {
+    border-radius: 20px;
+    /* border: 1px solid black; */
+    border: none;
+  }
+
+
+  .input-group button {
+    background-color: black;
+    color: white;
+    transition: all 0.3s;
+    border-radius: 10px;
+  }
+
+  .input-group button:hover {
+    background-color: teal;
+  }
+
+  @media (max-width: 576px) {
+    .form {
+      margin-top: -10px;
+    }
+    .card {
+      width: 150px;
+    }
+    .ayat {
+      width: 100%;
+      margin-top: 30px;
+    }
+    .total-surat {
+      margin-left: 30px;
+      font-size: 1rem;
+      margin-bottom: -30px;
+    }
+    .form {
+      width: 90%;
+    }
+  }
+</style>
+
+<section class="form">
+  <form method="post" action="/">
+    <div class="input-group mb-3 ">
+      <input type="text" class="form-control" placeholder="Cari Surah" name="input-surah" />
+      <button type="submit" class="input-group-text btn-search" id="basic-addon1"><i class="bi bi-search"></i></button>
+    </div>
+  </form>
+</section>
+
+<h1 class="total-surat">Jumlah Surah: <%= surah.length - 1 %></h1>
+
+<div class="ayat">
+  <% surah.forEach(ayat => { %>
+  <div class="card mt-4">
+    <div class="card-details">
+      <p class="text-title text-center">Surah: <%= ayat.name %></p>
+      <p class="text-body  text-center"><%= ayat.name_latin %></p>
+    </div>
+    <button class="card-button"><a href="/<%= ayat.name_latin %> ">Show</a></button>
+  </div>
+  <% }) %>
+</div>

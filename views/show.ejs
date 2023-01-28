@@ -1,0 +1,193 @@
+
+<style>
+    * {
+        cursor: pointer;
+    }
+    .body {
+        background-image: none;
+    }
+
+    /* btn back */
+    .back {
+        width: 80%;
+        margin: auto;
+        margin-top: 80px;
+        display: block;
+        text-decoration: none;
+        color: cornflowerblue;
+        font-family: 'Arvo', serif;
+    }
+    .back a {
+        text-decoration: none;
+    }
+
+
+    .judul {
+        color: rgb(78, 77, 77);
+        /* font-family: 'Merriweather', serif; */
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 500;
+        box-sizing: border-box;
+    }
+    .detail, .ayat, .arti {
+        width: 80%;
+        margin: auto;
+    }
+    .ayat p, .arti p {
+        font-size: 1.2rem;
+        font-family: 'Poppins', sans-serif;
+    }
+    .ayat h1 {
+        line-height: 60px;
+        font-family: cursive;
+    }
+    .arti h5 {
+        line-height: 35px;
+        font-style: italic;
+    }
+
+    /* btn flash */
+    .flash {
+        width: 80%;
+        height: 40px;
+        margin: auto;
+    }
+    button {
+        display: inline-block;
+        border-radius: 4px;
+        background-color: #3d405b;
+        border: none;
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 17px;
+        padding: 16px;
+        width: 100px;
+        height: 30px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+        box-sizing: border-box;
+        }
+
+    button span {
+        bottom: 11px;
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+        }
+    button span:after {
+        content: '»';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -15px;
+        transition: 0.5s;
+        }
+    button span a {
+        text-decoration: none;
+        color: white;
+        font-family: 'Arvo', serif;
+        font-size: 1rem;
+    }
+    button span a:hover {
+        color: white;
+    }
+    button:hover span {
+        padding-right: 15px;
+        }
+
+    button:hover span:after {
+        opacity: 1;
+        right: 0;
+        }
+
+
+    /* versi hp */
+    @media (max-width: 576px) {
+        .back {
+            border: none;
+            width: 90%;
+        }
+        .flash {
+            width: 90%;
+        }
+        .show {
+            width: 100%;
+            /* border: 1px solid black; */
+        }
+        .detail {
+            padding-top: 20px;
+        }
+        .detail, .ayat, .arti {
+            width: 90%;
+            margin: auto;
+        }
+        .ayat p, .arti p {
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        .ayat h1 {
+            line-height: 45px;
+        }
+        .arti {
+            margin-bottom: 50px;
+        }
+        .arti h5 {
+        line-height: 30px;
+        font-style: italic;
+    }
+    }
+</style>
+
+<!-- btn back -->
+<div class="back">
+    <i class="bi bi-arrow-left-circle-fill"></i>
+    <a href="/">Kembali Ke Halaman Awal</a>
+</div>
+
+<!-- btn ayat & arti -->
+<div class="flash mt-2">
+    <button>
+        <span class="link-button"><a href="#ayat">Ayat</a></span>
+    </button>
+    <button>
+        <span class="link-button"><a href="#arti">Arti</a></span>
+    </button>
+</div>
+
+<!-- Dokumen Surah -->
+<div class="show mt-4">
+    <div class="container-surah">
+        <div class="detail">
+            <% if (surah && surah.name_latin) { %>
+                <h3 class="judul text-start">Nama Surah:  <%= surah.name_latin %></h3>
+            <% } %>
+            <% if (surah && surah.arti) { %>
+                <h3 class="judul text-start">Arti Surah:  <%= surah.arti %></h3>
+            <% } %>
+            <% if (surah && surah.jumlah_ayat) { %>
+                <h3 class="judul text-start">Jumlah Ayat:  <%= surah.jumlah_ayat %></h3>
+            <% } %>
+            <% if (surah && surah.number) { %>
+                <h3 class="judul text-start">Nomor Surah:  <%= surah.number %></h3>
+            <% } %>
+        </div>
+        <div class="ayat target-element mt-4" id="ayat">
+            <p>Ayat : </p>
+            <% if (surah && Object.values(surah.text)) { %>
+                <h1><%= Object.values(surah.text) %> </h1>
+            <% } %>
+        </div>
+        <div class="arti target-element mt-4" id="arti">
+            <p>Artinya :</p>
+            <% if (surah && Object.values(surah.translate)) { %>
+                <h5><%= Object.values(surah.translate) %> </h5>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+
+
